@@ -562,7 +562,7 @@ const actionCreatePool = async (args: string[], setups?: SetupType) => {
     
 
     // Getting the pools
-    const existsPoolTypes = (await client.getAccountResources(packageAddr)).filter(resource => resource.type.startsWith(`${packageAddr}::pool::Pool`)).map(x => x.type);
+    const existsPoolTypes = (await client.getAccountResources(packageAddr)).filter((resource: { type: string; }) => resource.type.startsWith(`${packageAddr}::pool::Pool`)).map((x: { type: any; }) => x.type);
 
     // Get the pool configs
     const poolsConfigs = {
@@ -582,7 +582,7 @@ const actionCreatePool = async (args: string[], setups?: SetupType) => {
             const tokens = poolConfig.tokens;
             for (const tk of tokens) {
     
-                const isPoolNotExists = (existsPoolTypes.every(ty => (!ty.includes(tk.coin[0]) || !ty.includes(tk.coin[1])) ));
+                const isPoolNotExists = (existsPoolTypes.every((ty: string | string[]) => (!ty.includes(tk.coin[0]) || !ty.includes(tk.coin[1])) ));
                 if (!isPoolNotExists) {
                     console.log(`Skip creating pool: ${tk.coin[0]}/${tk.coin[1]}`)
                     continue;
@@ -640,7 +640,7 @@ const actionFreezePool = async (args: string[], setups?: SetupType) => {
     const packageAddr = accountAddr;
     await autoFund(account, client, faucetClient, 0.8);
 
-    const resources = (await client.getAccountResources(packageAddr)).filter(resource => resource.type.startsWith(`${packageAddr}::pool::Pool`));
+    const resources = (await client.getAccountResources(packageAddr)).filter((resource: { type: string; }) => resource.type.startsWith(`${packageAddr}::pool::Pool`));
     for (const resource of resources) {
         if (!filters.every(filter => resource.type.includes(filter))) {
             continue;
