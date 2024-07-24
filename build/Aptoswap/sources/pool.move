@@ -876,13 +876,7 @@ module Aptoswap::pool {
         let pool = borrow_global_mut<Pool<X, Y>>(pool_account_addr);
 
         // We should make the value "token / lsp" larger than the previous value before removing liqudity
-        // Thus 
-        // (token - dtoken) / (lsp - dlsp) >= token / lsp
-        //  ==> (token - dtoken) * lsp >= token * (lsp - dlsp)
-        //  ==> -dtoken * lsp >= -token * dlsp
-        //  ==> dtoken * lsp <= token * dlsp
-        //  ==> dtoken <= token * dlsp / lsp
-        //  ==> dtoken = floor[token * dlsp / lsp] <= token * dlsp / lsp
+ 
         // We use the floor operation
         let (x_amt, y_amt, lsp_supply) = get_amounts(pool);
         let x_removed = ((x_amt as u128) * (lsp_amount as u128)) / (lsp_supply as u128);
@@ -937,9 +931,6 @@ module Aptoswap::pool {
             }
         );
     }
-    // ============================================= Implementations =============================================
-
-    // ============================================= Helper Function =============================================
 
     fun validate_admin(user: &signer) {
         // assert!(exists<SwapCap>(user_addr), EPermissionDenied);
@@ -1056,16 +1047,10 @@ module Aptoswap::pool {
 
     /// Given dx (dx > 0), x and y. Ensure the constant product 
     /// market making (CPMM) equation fulfills after swapping:
-    /// (x + dx) * (y - dy) = x * y
     /// Due to the integter operation, we change the equality into
     /// inequadity operation, i.e:
-    /// (x + dx) * (y - dy) >= x * y
     public(friend) fun compute_amount(dx: u64, x: u64, y: u64): u64 {
-        // (x + dx) * (y - dy) >= x * y
-        //    ==> y - dy >= (x * y) / (x + dx)
-        //    ==> dy <= y - (x * y) / (x + dx)
-        //    ==> dy <= (y * dx) / (x + dx)
-        //    ==> dy = floor[(y * dx) / (x + dx)] <= (y * dx) / (x + dx)
+
        let (dx, x, y) = ((dx as u128), (x as u128), (y as u128));
         
         let numerator: u128 = y * dx;
@@ -1115,10 +1100,6 @@ module Aptoswap::pool {
         );
     }
 
-    // ============================================= Helper Function =============================================
-
-
-    // ============================================= Utilities =============================================
     public(friend) fun sqrt(x: u64): u64 {
         let bit = 1u128 << 64;
         let res = 0u128;
@@ -1153,5 +1134,4 @@ module Aptoswap::pool {
         get_seed_from_hint_and_index(b"Aptoswap::Pool_", pool_id)
     }
 
-    // ============================================= Utilities =============================================
 }

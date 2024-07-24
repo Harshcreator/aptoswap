@@ -2,7 +2,7 @@
 compiled_package_info:
   package_name: Aptoswap
   address_alias_instantiation:
-    Aptoswap: 090edd393d2ef43594af2bdbdfe235e583c9c7180c247f10a128aa2c154b75e6
+    Aptoswap: c53e6c1a15dc3d311ae20842158286c7bb69e5e0c3f2d99fc614abeaec5965e4
     Extensions: "0000000000000000000000000000000000000000000000000000000000000001"
     aptos_framework: "0000000000000000000000000000000000000000000000000000000000000001"
     aptos_fungible_asset: 000000000000000000000000000000000000000000000000000000000000000a
@@ -12,7 +12,7 @@ compiled_package_info:
     std: "0000000000000000000000000000000000000000000000000000000000000001"
     vm: "0000000000000000000000000000000000000000000000000000000000000000"
     vm_reserved: "0000000000000000000000000000000000000000000000000000000000000000"
-  source_digest: 97581A66DA8947002FDE7D1566BF7ACD6BFEFD7B0EF8629BFE3CD7AD403361A2
+  source_digest: CBE6CDF152D8276FD0873FE26A7EACC4BB6667A179C4EE80085CAE5C702D4ED2
   build_flags:
     dev_mode: false
     test_mode: false
@@ -24,7 +24,7 @@ compiled_package_info:
     install_dir: ~
     force_recompilation: false
     additional_named_addresses:
-      Aptoswap: 090edd393d2ef43594af2bdbdfe235e583c9c7180c247f10a128aa2c154b75e6
+      Aptoswap: c53e6c1a15dc3d311ae20842158286c7bb69e5e0c3f2d99fc614abeaec5965e4
     architecture: ~
     fetch_deps_only: false
     skip_fetch_latest_git_deps: false
