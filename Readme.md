@@ -35,3 +35,11 @@ aptos init
 # Compile
 aptos move compile --named-addresses Aptoswap=default --save-metadata
 ```
+
+- Run the frontend by installing all the modules
+
+```shell
+npm install
+npm run dev
+```
+- Initialise the wallet and enter the address for swapping tokens.
